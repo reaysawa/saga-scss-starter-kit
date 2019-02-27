@@ -12,18 +12,18 @@ module.exports = Object.assign({}, config, {
   mode: "production",
   stats: require("./webpack.stats.config.js"),
   output: {
-    path: path.join(__dirname, '../public'),
+    path: path.resolve(__dirname, '../public'),
     filename: '[name]-[contenthash].js',
-    chunkFilename: '[name]-[contenthash].chunk.js'
+    chunkFilename: '[chunkhash].js'
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[chunkhash].css",
+      chunkFilename: "[chunkhash].css"
+    }),
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "index.html"
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
     }),
     new webpack.HashedModuleIdsPlugin(),
     new HashAllModulesPlugin()

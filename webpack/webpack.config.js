@@ -9,15 +9,17 @@ const context = path.resolve(__dirname, "../")
 let config = {
   entry: "./src/index",
   context,
-  resolveLoader: {
-    modules: [path.join(context, "node_modules")]
+  output: {
+    path: path.resolve(__dirname, '../public'),
+    filename: '[name].js',
+    chunkFilename: '[name].js'
   },
   resolve: {
-    modules: [
-      path.join(context, "node_modules"),
-      context
-    ],
-    extensions: ['.scss', '.js']
+    modules: [path.join(context, "node_modules"), context],
+    extensions: [".scss", ".js", ".jsx", ".bundle.js", ".bundle.jsx"]
+  },
+  resolveLoader: {
+    modules: [path.join(context, "node_modules")]
   },
   module: {
     rules: [
@@ -31,7 +33,26 @@ let config = {
             }
           }
         ],
-        exclude: /node_modules/
+        exclude: function(path) {
+          if (path.match(/node_modules/)) {
+            return !path.match(/rudy/)
+          }
+          return false
+        }
+      },
+      {
+        test: /\.bundle\.jsx?$/,
+        use: [
+          {
+            loader: "bundle-loader",
+            options: {
+              lazy: true
+            }
+          },
+          {
+            loader: "babel-loader"
+          }
+        ]
       },
       {
         test: /\.scss|\.css$/,
@@ -84,6 +105,7 @@ let config = {
     ]
   },
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         vendors: {

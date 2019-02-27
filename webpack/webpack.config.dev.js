@@ -10,7 +10,6 @@ module.exports = Object.assign({}, config, {
   devServer: {
     host: 'localhost',
     port: '3000',
-    contentBase: 'public',
     publicPath: '/',
     historyApiFallback: true,
     hot: true,
@@ -18,8 +17,8 @@ module.exports = Object.assign({}, config, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, 'public/index.html'),
-      template: path.resolve(__dirname, 'index.html'),
+      filename: "index.html",
+      template: "index.html"
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
