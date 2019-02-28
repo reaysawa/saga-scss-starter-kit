@@ -1,3 +1,4 @@
 - React
-- SCSS
-- Redux-Saga
+- SCSS modules for styling components
+- Redux-Saga for state-machine-like stateful events coordination
+- Rudy for Routing through Redux
