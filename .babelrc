@@ -11,5 +11,12 @@
   ],
   "plugins": [
     "react-hot-loader/babel"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs"
+      ]
+    }
+  }
 }

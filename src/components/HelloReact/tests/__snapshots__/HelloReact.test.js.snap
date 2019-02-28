@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelloReact renders the name Charles 1`] = `
+<div
+  className="title"
+>
+  Hello 
+  Charles
+</div>
+`;
+
+exports[`HelloReact renders with the name prop renders the name Charles 1`] = `
+<div
+  className="title"
+>
+  Hello 
+  Charles
+</div>
+`;
