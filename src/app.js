@@ -9,7 +9,7 @@ store.dispatch(firstRoute())
 import Root from "src/containers/Root/Root"
 
 render(
-  <StoreContext.Provider store={store}>
+  <StoreContext.Provider value={store}>
     <Root />
   </StoreContext.Provider>,
   document.getElementById("app")
