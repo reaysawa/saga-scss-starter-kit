@@ -10,13 +10,17 @@ let config = {
   entry: "./src/index",
   context,
   output: {
-    path: path.resolve(__dirname, '../public'),
-    filename: '[name].js',
-    chunkFilename: '[name].js'
+    path: path.resolve(__dirname, "../public"),
+    filename: "[name].js",
+    chunkFilename: "[name].js"
   },
   resolve: {
-    modules: [path.join(context, "node_modules"), context],
-    extensions: [".scss", ".js", ".jsx", ".bundle.js", ".bundle.jsx"]
+    modules: [
+      context,
+      path.join(context, "node_modules"),
+      path.join(context, "packages")
+    ],
+    extensions: [".js", ".jsx", ".bundle.js", ".bundle.jsx", ".scss"]
   },
   resolveLoader: {
     modules: [path.join(context, "node_modules")]
@@ -103,18 +107,6 @@ let config = {
         ]
       }
     ]
-  },
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          chunks: "all",
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        }
-      }
-    }
   }
 }
 
