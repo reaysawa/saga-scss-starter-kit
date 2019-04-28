@@ -4,8 +4,7 @@ import createSaga from "redux-saga"
 import { createLogger } from "redux-logger"
 
 import { connectRoutes } from "redux-first-router"
-import { pages as appRoutes } from "src/redux/states/pages"
-console.log(appRoutes)
+import { pathConstsToPaths } from "src/redux/states/pages"
 
 import reducers from "src/redux/reducers"
 import rootSaga from "src/sagas"
@@ -23,7 +22,7 @@ export default preloadedState => {
     reducer: routeReducer,
     middleware: routeMiddleware,
     enhancer: routeEnhancer
-  } = connectRoutes(require("history").createBrowserHistory(), appRoutes)
+  } = connectRoutes(pathConstsToPaths)
 
   const rootReducer = combineReducers({ ...reducers, location: routeReducer })
   const middlewareEnhancers = compose(

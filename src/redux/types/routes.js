@@ -1,4 +1,3 @@
-export const HOME = 'HOME'
-export const CHECKOUT = 'CHECKOUT'
-export const NOT_FOUND = 'NOT_FOUND'
-
+const rudyPrefix = "@@redux-first-router/"
+export const HOME = rudyPrefix + 'HOME'
+export const NOT_FOUND = rudyPrefix + '404'

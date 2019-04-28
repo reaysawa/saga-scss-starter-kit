@@ -4,7 +4,12 @@ import NotFoundPage from 'src/pages/NotFoundPage'
 
 export const initialState = HOME
 
-export const pages = {
+export const pathConstsToPages = {
   [HOME]: HomePage,
   [NOT_FOUND]: NotFoundPage
+}
+
+export const pathConstsToPaths = {
+  [HOME]: '/',
+  [NOT_FOUND]: '/404'
 }

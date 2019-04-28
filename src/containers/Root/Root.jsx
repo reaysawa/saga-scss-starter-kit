@@ -3,10 +3,10 @@ import { useMappedState } from "redux-react-hook"
 import { hot } from "react-hot-loader/root"
 
 function Root() {
-  const { pages: Page } = useMappedState(
+  const { Page } = useMappedState(
     useCallback(
-      state => ({
-        pages: state.pages
+      ({ pages }) => ({
+        Page: pages
       }),
       []
     )
