@@ -1,5 +1,7 @@
 import { initialState, pages } from "src/redux/states/pages"
-import { NOT_FOUND } from "src/redux/types/routes"
 
-export default (state = initialState, action = {}) =>
-  pages[action.type] || pages[state]
+const rudyPrefixLen = "@@redux-first-router/".length
+export default (state = initialState, action = {}) => {
+  //console.log('LOG' + action.type.substring(rudyPrefixLen))
+  return pages[action.type.substring(rudyPrefixLen)] || pages[state]
+}

@@ -3,13 +3,11 @@ import { render } from "react-dom"
 
 import { StoreContext } from "redux-react-hook"
 import configureStore from "src/redux"
-const { store, firstRoute } = configureStore()
-store.dispatch(firstRoute())
 
 import Root from "src/containers/Root/Root"
 
 render(
-  <StoreContext.Provider value={store}>
+  <StoreContext.Provider value={configureStore()}>
     <Root />
   </StoreContext.Provider>,
   document.getElementById("app")

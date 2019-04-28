@@ -3,8 +3,9 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import createSaga from "redux-saga"
 import { createLogger } from "redux-logger"
 
-import { createRouter } from "@respond-framework/rudy"
-import appRoutes from "src/routes"
+import { connectRoutes } from "redux-first-router"
+import { pages as appRoutes } from "src/redux/states/pages"
+console.log(appRoutes)
 
 import reducers from "src/redux/reducers"
 import rootSaga from "src/sagas"
@@ -21,11 +22,12 @@ export default preloadedState => {
   const {
     reducer: routeReducer,
     middleware: routeMiddleware,
-    firstRoute
-  } = createRouter(appRoutes)
+    enhancer: routeEnhancer
+  } = connectRoutes(require("history").createBrowserHistory(), appRoutes)
 
   const rootReducer = combineReducers({ ...reducers, location: routeReducer })
   const middlewareEnhancers = compose(
+    routeEnhancer,
     sagaMiddleware,
     applyMiddleware(routeMiddleware)
   )
@@ -33,5 +35,5 @@ export default preloadedState => {
   const store = createStore(rootReducer, preloadedState, middlewareEnhancers)
   saga.run(rootSaga)
 
-  return { store, firstRoute }
+  return store
 }
