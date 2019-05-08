@@ -3,8 +3,7 @@ import { render } from "react-dom"
 
 import { StoreContext } from "redux-react-hook"
 import configureStore from "src/redux"
-const { store, firstRoute } = configureStore()
-store.dispatch(firstRoute())
+const store = configureStore()
 
 import Root from "src/containers/Root/Root"
 

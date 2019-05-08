@@ -1,17 +1,25 @@
-import React, { useCallback } from "react"
-import { useMappedState } from "redux-react-hook"
-import { hot } from "react-hot-loader/root"
+import React from "react"
+//import { hot } from "react-hot-loader/root"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { useLazyBundle } from 'src/utils/useLazyBundle'
+import LoadingComponent from 'src/components/Loading/Loading.jsx'
+import HomePageLazy from "bundle-loader?lazy!src/pages/HomePage"
+import AboutPageLazy from "bundle-loader?lazy!src/pages/AboutPage"
 
-function Root() {
-  const { pages: Page } = useMappedState(
-    useCallback(
-      state => ({
-        pages: state.pages
-      }),
-      []
-    )
+const Root = () => {
+  const [HomePage] = useLazyBundle(HomePageLazy, 500, LoadingComponent)
+  const [AboutPage] = useLazyBundle(AboutPageLazy, 500, LoadingComponent)
+
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/about" component={AboutPage} />
+        <Route exact path="/" component={HomePage} />
+      </Switch>
+    </BrowserRouter>
   )
-  return <Page />
 }
 
-export default hot(Root)
+export default Root
+
+//export default hot(Root)

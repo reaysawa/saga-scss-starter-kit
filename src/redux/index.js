@@ -3,9 +3,6 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import createSaga from "redux-saga"
 import { createLogger } from "redux-logger"
 
-import { createRouter } from "@respond-framework/rudy"
-import appRoutes from "src/routes"
-
 import reducers from "src/redux/reducers"
 import rootSaga from "src/sagas"
 
@@ -18,20 +15,11 @@ const sagaMiddleware = (() =>
     : applyMiddleware(saga))()
 
 export default preloadedState => {
-  const {
-    reducer: routeReducer,
-    middleware: routeMiddleware,
-    firstRoute
-  } = createRouter(appRoutes)
-
-  const rootReducer = combineReducers({ ...reducers, location: routeReducer })
-  const middlewareEnhancers = compose(
-    sagaMiddleware,
-    applyMiddleware(routeMiddleware)
-  )
+  const rootReducer = combineReducers(reducers)
+  const middlewareEnhancers = compose(sagaMiddleware)
 
   const store = createStore(rootReducer, preloadedState, middlewareEnhancers)
   saga.run(rootSaga)
 
-  return { store, firstRoute }
+  return store
 }

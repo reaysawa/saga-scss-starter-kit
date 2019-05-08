@@ -1,27 +1,18 @@
 import React from "react"
 import useLazyBundle from "src/utils/useLazyBundle"
 
-import MainLayout from "src/layouts/MainLayout/MainLayout"
-import HelloReactLazy from "bundle-loader?lazy!src/components/HelloReact/HelloReact"
-import { useDispatch } from "redux-react-hook"
+import MainLayout from "src/layouts/MainLayout/MainLayout.jsx"
+import HelloReactLazy from "bundle-loader?lazy!src/components/HelloReact/HelloReact.jsx"
+import LoadingComponent from 'src/components/Loading/Loading.jsx'
 
-function LoadingComponent() {
-  return <span>Loading...</span>
-}
+import { Link } from 'react-router-dom'
 
 function HomePage() {
   const [HelloReact] = useLazyBundle(HelloReactLazy, 500, LoadingComponent)
-  const dispatch = useDispatch()
 
   return (
     <MainLayout>
-      <span
-        role="link"
-        tabIndex="0"
-        onClick={() => dispatch({ type: 'NOT_FOUND', location: { kind: 'set' } })}
-      >
-        NOT_FOUND
-      </span>
+      <Link to={{ pathname: '/about' }}>About!</Link>
       <HelloReact name={"Charles"} />
     </MainLayout>
   )
