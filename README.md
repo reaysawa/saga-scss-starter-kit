@@ -6,8 +6,10 @@
 - Redux
 - Redux-Saga
 
-## Routing
-- Rudy
+## Routing - pick a branch
+- React-Router (branch: with-react-router)
+- (Unmantained) - Rudy (branch: with-respond-rudy)
+- (Unmantained) - RFR (branch: with-redux-first-routing)
 
 ## Testing
 - Jest

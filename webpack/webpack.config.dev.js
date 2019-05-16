@@ -10,10 +10,10 @@ module.exports = Object.assign({}, config, {
   devServer: {
     host: "localhost",
     port: "3000",
-    publicPath: "/",
     historyApiFallback: true,
     hot: true,
-    clientLogLevel: "none"
+    clientLogLevel: "none",
+    contentBase: path.join(config.context, "assets")
   },
   plugins: [
     new HtmlWebpackPlugin({

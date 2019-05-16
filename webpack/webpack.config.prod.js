@@ -2,8 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin
-const webpack = require("webpack")
 const path = require("path")
+const CopyPlugin = require("copy-webpack-plugin")
 
 const config = require("./webpack.config.js")
 
@@ -42,6 +42,10 @@ module.exports = Object.assign({}, config, {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "index.html"
-    })
+    }),
+    new CopyPlugin([
+      { context: config.context, from: "assets" }
+    ]),
+    new BundleAnalyzerPlugin()
   ]
 })
