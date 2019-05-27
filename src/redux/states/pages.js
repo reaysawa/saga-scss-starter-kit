@@ -1,10 +1,10 @@
-import { HOME, NOT_FOUND } from 'src/redux/types/routes'
+import { HOME, ABOUT } from 'src/redux/types/routes'
 import HomePage from 'src/pages/HomePage'
-import NotFoundPage from 'src/pages/NotFoundPage'
+import AboutPage from 'src/pages/AboutPage'
 
-export const initialState = NOT_FOUND
+export const initialState = HOME
 
 export const pages = {
   [HOME]: HomePage,
-  [NOT_FOUND]: NotFoundPage
+  [ABOUT]: AboutPage
 }

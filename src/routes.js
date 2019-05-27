@@ -1,6 +1,6 @@
-import { HOME, NOT_FOUND } from 'src/redux/types/routes'
+import { HOME, ABOUT } from 'src/redux/types/routes'
 
 export default {
   [HOME]: '/',
-  [NOT_FOUND]: '/404'
+  [ABOUT]: '/about'
 }

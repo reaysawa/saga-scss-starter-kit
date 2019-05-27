@@ -18,9 +18,9 @@ function HomePage() {
       <span
         role="link"
         tabIndex="0"
-        onClick={() => dispatch({ type: 'NOT_FOUND', location: { kind: 'set' } })}
+        onClick={() => dispatch({ type: 'ABOUT', location: { kind: 'push' } })}
       >
-        NOT_FOUND
+        <b>LINK TO ABOUT</b>
       </span>
       <HelloReact name={"Charles"} />
     </MainLayout>
